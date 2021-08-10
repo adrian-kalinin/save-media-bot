@@ -1,4 +1,4 @@
-from peewee import SqliteDatabase, Model, IntegerField, BooleanField
+from peewee import SqliteDatabase, Model, IntegerField, BooleanField, CharField
 from configparser import ConfigParser
 
 
@@ -22,3 +22,10 @@ class BaseModel(Model):
 class User(BaseModel):
     user_id = IntegerField(primary_key=True, unique=True)
     active = BooleanField(default=True)
+    requests = IntegerField(default=0)
+
+
+# model that represents source
+class Source(BaseModel):
+    name = CharField(max_length=40)
+    users = IntegerField(default=0)

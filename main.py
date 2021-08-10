@@ -3,7 +3,7 @@ from telegram.ext import Updater
 from configparser import ConfigParser
 import logging
 
-from bot.models import database, User
+from bot.models import database, User, Source
 from bot.callbacks import error_callback
 
 from bot.handlers import (
@@ -48,7 +48,7 @@ def bound_handlers():
 # set up database
 def configure_database():
     database.connect()
-    database.create_tables([User])
+    database.create_tables([User, Source])
     database.close()
     logging.info('Database has been configured')
 
