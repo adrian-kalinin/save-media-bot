@@ -1,2 +1,2 @@
-# Telegram Bot Start Pack
-Starter pack for Telegram bot that contains well architecture, database, admin panel, broadcasting and error handling.
+# Save Media Bot
+Telegram Bot that saves pictures, videos and stories from Instagram and videos from TikTok.
