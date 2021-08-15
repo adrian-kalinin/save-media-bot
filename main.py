@@ -9,7 +9,7 @@ from bot.callbacks import error_callback
 from bot.handlers import (
     start_handler, admin_handler,
     statistics_handler, backup_handler, mailing_conversation_handler,
-    download_media_handler, invalid_link_handler
+    instagram_post_handler, invalid_link_handler
 )
 
 
@@ -46,7 +46,7 @@ def bound_handlers():
     dispatcher.add_handler(mailing_conversation_handler)
 
     # core handlers
-    dispatcher.add_handler(download_media_handler)
+    dispatcher.add_handler(instagram_post_handler)
     dispatcher.add_handler(invalid_link_handler)
 
 

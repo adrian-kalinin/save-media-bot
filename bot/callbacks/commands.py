@@ -1,4 +1,4 @@
-from telegram import Update, ParseMode
+from telegram import Update, ParseMode, ReplyKeyboardRemove
 from telegram.ext import CallbackContext
 import logging
 
@@ -31,6 +31,6 @@ def start_command_callback(update: Update, context: CallbackContext):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
         text=Message.start, parse_mode=ParseMode.HTML,
-        reply_markup=Keyboard.main
+        reply_markup=ReplyKeyboardRemove()
     )
 

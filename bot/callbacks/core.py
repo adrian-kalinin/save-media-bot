@@ -1,10 +1,15 @@
 from telegram import Update
 from telegram.ext import CallbackContext
 
+from ..constants import Message
 
-def download_media_callback(update: Update, context: CallbackContext):
-    pass
+
+def instagram_post_callback(update: Update, context: CallbackContext):
+    print('instagram post')
 
 
 def invalid_link_callback(update: Update, context: CallbackContext):
-    pass
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text=Message.invalid_link
+    )

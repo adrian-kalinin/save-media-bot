@@ -19,10 +19,6 @@ class ReplyButtons:
 
 
 class Keyboard:
-    main = ReplyKeyboardMarkup([
-        ['/start']
-    ])
-
     admin = InlineKeyboardMarkup([
         [InlineKeyboardButton('Посмотреть статистику', callback_data=CallbackData.statistics)],
         [InlineKeyboardButton('Создать рассылку', callback_data=CallbackData.mailing)],
@@ -42,6 +38,8 @@ class Message:
         '<b>Instagram</b>: .\n'  # фото, видео, карусели и сторис
         '<b>TikTok</b>: '  # видео и музыка.
     )
+
+    invalid_link = 'Вы прислали нерабочую ссылку, убедитесь в правильности ввода'
 
     admin = 'Добро пожаловать в админскую панель!'
 

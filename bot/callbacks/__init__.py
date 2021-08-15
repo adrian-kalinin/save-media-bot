@@ -14,5 +14,5 @@ from .mailing import (
 )
 
 from .core import (
-    download_media_callback, invalid_link_callback
+    instagram_post_callback, invalid_link_callback
 )

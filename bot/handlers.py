@@ -2,7 +2,7 @@ from telegram.ext import CommandHandler, MessageHandler, CallbackQueryHandler, C
 from configparser import ConfigParser
 
 from .constants import CallbackData, States, ReplyButtons
-from .filters import link_filter
+from .filters import link_filter, instagram_post_filter
 from .callbacks import *
 
 
@@ -50,9 +50,10 @@ mailing_conversation_handler = ConversationHandler(
 )
 
 # core handlers
-download_media_handler = MessageHandler(
-    filters=Filters.text & link_filter,
-    callback=download_media_callback
+instagram_post_handler = MessageHandler(
+    filters=Filters.text & link_filter & instagram_post_filter,
+    callback=instagram_post_callback
+
 )
 
 invalid_link_handler = MessageHandler(
