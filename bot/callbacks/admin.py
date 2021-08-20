@@ -8,6 +8,7 @@ import os
 
 from ..models import User, Source
 from ..constants import Message, States
+from ..utils import sending_document
 
 
 def statistics_callback(update: Update, context: CallbackContext):
@@ -50,6 +51,7 @@ def mailing_callback(update: Update, context: CallbackContext):
     return States.prepare_mailing
 
 
+@sending_document
 def backup_callback(update: Update, context: CallbackContext):
     config = ConfigParser()
     config.read('config.ini')

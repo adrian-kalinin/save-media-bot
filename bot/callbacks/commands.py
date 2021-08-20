@@ -4,8 +4,10 @@ import logging
 
 from ..models import User, Source
 from ..constants import Message, Keyboard
+from ..utils import typing
 
 
+@typing
 def admin_command_callback(update: Update, context: CallbackContext):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -13,6 +15,7 @@ def admin_command_callback(update: Update, context: CallbackContext):
     )
 
 
+@typing
 def start_command_callback(update: Update, context: CallbackContext):
     user, created = User.get_or_create(user_id=update.effective_user.id)
 
@@ -31,6 +34,6 @@ def start_command_callback(update: Update, context: CallbackContext):
     context.bot.send_message(
         chat_id=update.effective_chat.id,
         text=Message.start, parse_mode=ParseMode.HTML,
-        reply_markup=ReplyKeyboardRemove()
+        reply_markup=Keyboard.main
     )
 

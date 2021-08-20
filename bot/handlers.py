@@ -1,23 +1,15 @@
 from telegram.ext import CommandHandler, MessageHandler, CallbackQueryHandler, ConversationHandler, Filters
-from configparser import ConfigParser
 
 from .constants import CallbackData, States, ReplyButtons
-from .filters import link_filter, instagram_post_filter
+from .filters import link, instagram_post, subscribed
 from .callbacks import *
-
-
-# parse config
-config = ConfigParser()
-config.read('config.ini')
-
-# parser admin list
-admins = tuple(map(int, config.get('bot', 'admins').split(',')))
+from settings import ADMINS
 
 
 # command handlers
 admin_handler = CommandHandler(
     command='admin', callback=admin_command_callback,
-    filters=Filters.user(user_id=admins)
+    filters=Filters.user(user_id=ADMINS)
 )
 
 start_handler = CommandHandler(
@@ -50,13 +42,23 @@ mailing_conversation_handler = ConversationHandler(
 )
 
 # core handlers
+how_to_use_handler = MessageHandler(
+    filters=Filters.text(ReplyButtons.how_to_use),
+    callback=how_to_use_callback
+)
+
+not_subscribed_handler = MessageHandler(
+    filters=Filters.text & link & ~subscribed,
+    callback=not_subscribed_callback
+)
+
 instagram_post_handler = MessageHandler(
-    filters=Filters.text & link_filter & instagram_post_filter,
+    filters=Filters.text & link & instagram_post & subscribed,
     callback=instagram_post_callback
 
 )
 
 invalid_link_handler = MessageHandler(
-    filters=Filters.text & ~link_filter,
+    filters=Filters.text & ~link,
     callback=invalid_link_callback
 )
