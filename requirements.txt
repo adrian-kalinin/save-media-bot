@@ -1,3 +1,5 @@
 python-telegram-bot==13.3
 peewee==3.14.1
 validators==0.18.2
+instaloader==4.8.1
+requests==2.26.0
