@@ -1,9 +1,18 @@
-from telegram import Bot, InputMediaPhoto, InputMediaVideo, ParseMode, ChatAction
-from instaloader import Post
+from telegram import Bot, InputMediaPhoto, InputMediaVideo, ParseMode
+from instaloader import Instaloader, Post
+from sqlite3 import connect
 import requests
 import re
 
-from ..constants import Message
+from settings import INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD
+from ..constants import Message, USER_AGENT
+
+
+# set up instaloader
+instaloader = Instaloader(user_agent=USER_AGENT)
+
+instaloader.load_session_from_file(INSTAGRAM_USERNAME, f'sessions/session-{INSTAGRAM_USERNAME}')
+instaloader.login(user=INSTAGRAM_USERNAME, passwd=INSTAGRAM_PASSWORD)
 
 
 def get_shortcode(url: str):
@@ -39,7 +48,8 @@ def send_instagram_carousel(post: Post, bot: Bot, chat_id: int):
             video = requests.get(node.video_url).content
             media_entities.append(InputMediaVideo(video))
         else:
-            media_entities.append(InputMediaPhoto(node.display_url))
+            photo = requests.get(node.display_url).content
+            media_entities.append(InputMediaPhoto(photo))
 
     bot.send_media_group(
         chat_id=chat_id,

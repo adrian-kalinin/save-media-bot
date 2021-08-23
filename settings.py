@@ -5,6 +5,9 @@ config = ConfigParser()
 config.read('config.ini')
 
 
+# project section
+DEBUG = config.getboolean('project', 'debug')
+
 # bot section
 BOT_TOKEN = config.get('bot', 'token')
 ADMINS = tuple(map(int, config.get('bot', 'admins').split(', ')))

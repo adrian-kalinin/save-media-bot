@@ -4,8 +4,8 @@ from telegram.ext import CallbackContext
 from instaloader import Post, BadResponseException
 
 from settings import CHANNEL
-from ..constants import Message, instaloader
-from ..utils.instagram import get_shortcode, send_instagram_post, send_instagram_carousel
+from ..constants import Message
+from ..utils.instagram import instaloader, get_shortcode, send_instagram_post, send_instagram_carousel
 from ..utils import typing, sending_photo, log_request
 
 

@@ -4,7 +4,7 @@ from telegram.ext import MessageFilter, UpdateFilter
 import validators
 import re
 
-from settings import BOT_TOKEN, CHANNEL
+from settings import BOT_TOKEN, CHANNEL, DEBUG
 
 
 bot = Bot(BOT_TOKEN)
@@ -12,11 +12,14 @@ bot = Bot(BOT_TOKEN)
 
 class SubscribedFilter(UpdateFilter):
     def filter(self, update: Update):
-        chat_member = bot.get_chat_member(
-            chat_id=CHANNEL,
-            user_id=update.effective_user.id
-        )
-        return chat_member.status in ('member', 'creator', 'administrator')
+        if not DEBUG:
+            chat_member = bot.get_chat_member(
+                chat_id=CHANNEL,
+                user_id=update.effective_user.id
+            )
+            return chat_member.status in ('member', 'creator', 'administrator')
+
+        return True
 
 
 class LinkFilter(MessageFilter):

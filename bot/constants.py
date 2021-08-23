@@ -1,19 +1,10 @@
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup
-from instaloader import Instaloader
-
-from settings import INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD
 
 
 USER_AGENT = (
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'
     ' AppleWebKit/605.1.15 (KHTML, like Gecko) '
     'Version/14.1.1 Safari/605.1.15'
-)
-
-instaloader = Instaloader(user_agent=USER_AGENT)
-instaloader.login(
-    user=INSTAGRAM_USERNAME,
-    passwd=INSTAGRAM_PASSWORD
 )
 
 
@@ -66,7 +57,7 @@ class Message:
         '<code>https://www.instagram.com/p/BYvh3Yel9iL/</code>'
     )
 
-    not_subscribed = 'Чтобы пользоваться ботом, нужна подписка на канал — @{}'
+    not_subscribed = 'Чтобы пользоваться ботом, нужна подписка на канал — {}'
 
     instagram_post_caption = '<b>Лайки: {}</b>\n\n{}'
 

@@ -12,7 +12,7 @@ from bot.handlers import (
     instagram_post_handler, invalid_link_handler
 )
 
-from settings import BOT_TOKEN
+import settings
 
 
 # set up logger
@@ -24,7 +24,7 @@ logging.basicConfig(
 
 
 # create updater
-updater = Updater(BOT_TOKEN)
+updater = Updater(settings.BOT_TOKEN)
 dispatcher = updater.dispatcher
 
 
@@ -59,18 +59,33 @@ def configure_database():
     logging.info('Database has been configured')
 
 
-# set up webhook
-def configure_webhook():
-    pass
-
-
 def main():
     # setting up application
     bound_handlers()
     configure_database()
-    configure_webhook()
 
-    # start bot
+    # long polling on development
+    if settings.DEBUG:
+        updater.start_polling()
+
+    # webhook on production
+    else:
+        webhook_url = settings.WEBHOOK_URL.format(
+            host=settings.HOST,
+            port=settings.PORT,
+            token=settings.BOT_TOKEN
+        )
+
+        updater.start_webhook(
+            listen=settings.LISTEN,
+            port=settings.PORT,
+            url_path=settings.BOT_TOKEN,
+            key=settings.KEY_PATH,
+            cert=settings.CERT_PATH,
+            webhook_url=webhook_url
+        )
+
+    # log start bot
     updater.start_polling()
     logging.info('Bot has started')
 
