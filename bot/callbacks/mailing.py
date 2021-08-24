@@ -152,15 +152,18 @@ def __send_mailing_callback(update: Update, context: CallbackContext):
     logging.info('Mailing has started')
     sent_count = __send_mailing(context)
 
+    del context.user_data['mailing_message']
+
     context.bot.send_message(
         chat_id=update.effective_chat.id,
         text=Message.mailing_finished.format(sent_count=sent_count)
     )
 
     logging.info('Mailing has finished')
-    return ConversationHandler.END
 
 
 def send_mailing_callback(update: Update, context: CallbackContext):
     mailing_thread = Thread(target=__send_mailing_callback, args=(update, context))
     mailing_thread.start()
+
+    return ConversationHandler.END

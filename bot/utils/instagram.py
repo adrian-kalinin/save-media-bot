@@ -1,6 +1,5 @@
 from telegram import Bot, InputMediaPhoto, InputMediaVideo, ParseMode
 from instaloader import Instaloader, Post
-from sqlite3 import connect
 import requests
 import re
 
