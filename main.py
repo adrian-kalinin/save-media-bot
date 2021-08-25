@@ -9,7 +9,7 @@ from bot.handlers import (
     start_handler, admin_handler,
     statistics_handler, backup_handler, mailing_conversation_handler,
     how_to_use_handler, not_subscribed_handler,
-    instagram_post_handler, invalid_link_handler
+    instagram_post_handler, tiktok_video_handler, invalid_link_handler
 )
 
 import settings
@@ -48,6 +48,7 @@ def bound_handlers():
     dispatcher.add_handler(how_to_use_handler)
     dispatcher.add_handler(not_subscribed_handler)
     dispatcher.add_handler(instagram_post_handler)
+    dispatcher.add_handler(tiktok_video_handler)
     dispatcher.add_handler(invalid_link_handler)
 
 

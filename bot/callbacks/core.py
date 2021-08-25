@@ -57,6 +57,14 @@ def instagram_post_callback(update: Update, context: CallbackContext):
 
 
 @typing
+def tiktok_video_callback(update: Update, context: CallbackContext):
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text='NotImplemented'
+    )
+
+
+@typing
 def invalid_link_callback(update: Update, context: CallbackContext):
     context.bot.send_message(
         chat_id=update.effective_chat.id,

@@ -34,9 +34,15 @@ class LinkFilter(MessageFilter):
 
 class InstagramPostFilter(MessageFilter):
     def filter(self, message: Message):
-        return re.search(r'https:\/\/www.instagram.com\/p\/([a-zA-Z0-9-_]+)\/.*', message.text)
+        return re.search(r'https:\/\/www\.instagram\.com\/p\/([a-zA-Z0-9-_]+)\/.*', message.text)
+
+
+class TikTokVideoFilter(MessageFilter):
+    def filter(self, message: Message):
+        return re.search(r'https:\/\/vm\.tiktok\.com\/ZSJvp9A8A\/.*', message.text)
 
 
 subscribed = SubscribedFilter()
 link = LinkFilter()
 instagram_post = InstagramPostFilter()
+tiktok_video = TikTokVideoFilter()

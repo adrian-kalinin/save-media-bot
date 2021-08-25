@@ -49,12 +49,14 @@ class Message:
         'Привет! Отправь мне ссылку на то, что надо скачать, и через мгновение я тебе всё отправлю. Сейчас '
         'поддерживается:\n\n'
         '<b>Instagram</b>: фото, видео и карусели.\n'
-        # '<b>TikTok</b>: видео.'
+        '<b>TikTok</b>: видео.'
     )
 
     how_to_use = (
         'Для скачивания фото, видео или карусели из Instagram пришлите ссылку следующего вида:\n\n'
-        '<code>https://www.instagram.com/p/BYvh3Yel9iL/</code>'
+        '<code>https://www.instagram.com/p/BYvh3Yel9iL/</code>\n\n'
+        'Для скачивания видео из TikTok пришлите ссылку следующего вида:\n\n'
+        '<code>https://vm.tiktok.com/ZSJvp9A8A/</code>'
     )
 
     not_subscribed = 'Чтобы пользоваться ботом, нужна подписка на канал — {}'

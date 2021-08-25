@@ -15,5 +15,6 @@ from .mailing import (
 
 from .core import (
     how_to_use_callback, not_subscribed_callback,
-    instagram_post_callback, invalid_link_callback
+    instagram_post_callback, tiktok_video_callback,
+    invalid_link_callback
 )
