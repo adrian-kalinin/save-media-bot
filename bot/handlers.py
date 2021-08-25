@@ -9,11 +9,12 @@ from settings import ADMINS
 # command handlers
 admin_handler = CommandHandler(
     command='admin', callback=admin_command_callback,
-    filters=Filters.user(user_id=ADMINS)
+    filters=Filters.private & Filters.user(user_id=ADMINS)
 )
 
 start_handler = CommandHandler(
-    command='start', callback=start_command_callback
+    command='start', callback=start_command_callback,
+    filters=Filters.private
 )
 
 # admin handlers
@@ -43,22 +44,22 @@ mailing_conversation_handler = ConversationHandler(
 
 # core handlers
 how_to_use_handler = MessageHandler(
-    filters=Filters.text(ReplyButtons.how_to_use),
+    filters=Filters.private & Filters.text(ReplyButtons.how_to_use),
     callback=how_to_use_callback
 )
 
 not_subscribed_handler = MessageHandler(
-    filters=Filters.text & link & ~subscribed,
+    filters=Filters.private & Filters.text & link & ~subscribed,
     callback=not_subscribed_callback
 )
 
 instagram_post_handler = MessageHandler(
-    filters=Filters.text & link & instagram_post & subscribed,
+    filters=Filters.private & Filters.text & link & instagram_post & subscribed,
     callback=instagram_post_callback
 
 )
 
 invalid_link_handler = MessageHandler(
-    filters=Filters.text & ~link,
+    filters=Filters.private & Filters.text & ~link,
     callback=invalid_link_callback
 )
