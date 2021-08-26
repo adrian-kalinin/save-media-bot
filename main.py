@@ -30,8 +30,9 @@ dispatcher = updater.dispatcher
 
 # bound handlers to dispatcher
 def bound_handlers():
-    # noinspection PyTypeChecker
-    dispatcher.add_error_handler(error_callback)
+    if not settings.DEBUG:
+        # noinspection PyTypeChecker
+        dispatcher.add_error_handler(error_callback)
 
     # command handlers
     dispatcher.add_handler(admin_handler)

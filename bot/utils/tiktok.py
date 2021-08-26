@@ -4,16 +4,17 @@ import re
 
 
 def get_tiktok_video_id(url):
-    pattern = r'https:\/\/www\.tiktok\.com/@[a-zA-Z0-9-_]+/video/([1-9]+).*'
+    first_pattern = r'https:\/\/www\.tiktok\.com/@[a-zA-Z0-9-_]+/video/([1-9]+).*'
+    second_pattern = r'https:\/\/m\.tiktok\.com/v/([1-9]+).html'
 
-    if result := re.search(pattern, url):
+    if result := re.search(first_pattern, url):
         return result.group(1)
 
-    headers = {'User-Agent': FakeUserAgent(use_cache_server=False).random}
+    headers = {'User-Agent': FakeUserAgent().random}
     response = requests.get(url, headers=headers)
 
-    pattern = r'https:\/\/m\.tiktok\.com/v/([1-9]+).html'
-    result = re.search(pattern, response.url)
+    if result := re.search(first_pattern, response.url):
+        return result.group(1)
 
-    return result.group(1)
-
+    elif result := re.search(second_pattern, response.url):
+        return result.group(1)
