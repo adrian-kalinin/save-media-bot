@@ -5,7 +5,8 @@ from instaloader import Post, BadResponseException
 
 from settings import CHANNEL
 from ..constants import Message
-from ..utils.instagram import instaloader, get_shortcode, send_instagram_post, send_instagram_carousel
+from ..utils.instagram import instaloader, get_inst_post_shortcode, send_instagram_post, send_instagram_carousel
+from ..utils.tiktok import get_tiktok_video_id
 from ..utils import typing, sending_photo, log_request
 
 
@@ -29,7 +30,7 @@ def how_to_use_callback(update: Update, context: CallbackContext):
 
 @sending_photo
 def instagram_post_callback(update: Update, context: CallbackContext):
-    shortcode = get_shortcode(update.message.text)
+    shortcode = get_inst_post_shortcode(update.message.text)
 
     try:
         post = Post.from_shortcode(instaloader.context, shortcode)
@@ -58,9 +59,11 @@ def instagram_post_callback(update: Update, context: CallbackContext):
 
 @typing
 def tiktok_video_callback(update: Update, context: CallbackContext):
+    video_id = get_tiktok_video_id(update.message.text)
+
     context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text='NotImplemented'
+        text=video_id
     )
 
 

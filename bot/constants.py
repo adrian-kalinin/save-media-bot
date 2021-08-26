@@ -56,7 +56,8 @@ class Message:
         'Для скачивания фото, видео или карусели из Instagram пришлите ссылку следующего вида:\n\n'
         '<code>https://www.instagram.com/p/BYvh3Yel9iL/</code>\n\n'
         'Для скачивания видео из TikTok пришлите ссылку следующего вида:\n\n'
-        '<code>https://vm.tiktok.com/ZSJvp9A8A/</code>'
+        '<code>https://vm.tiktok.com/ZSJvpWXK4/</code> или '
+        '<code>https://www.tiktok.com/@therock/video/6824918631965576454</code>'
     )
 
     not_subscribed = 'Чтобы пользоваться ботом, нужна подписка на канал — {}'

@@ -14,7 +14,7 @@ instaloader.load_session_from_file(INSTAGRAM_USERNAME, f'sessions/session-{INSTA
 instaloader.login(user=INSTAGRAM_USERNAME, passwd=INSTAGRAM_PASSWORD)
 
 
-def get_shortcode(url: str):
+def get_inst_post_shortcode(url: str):
     if result := re.search(r'https:\/\/www.instagram.com\/p\/([a-zA-Z0-9-_]+)\/.*', url):
         return result.group(1)
 
