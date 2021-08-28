@@ -31,7 +31,8 @@ def send_tiktok_video(tiktok_api: TikTokApi, did: str, video_data: dict, chat_id
     caption = Message.tiktok_video_caption.format(
         views=video_data['itemInfo']['itemStruct']['stats']['playCount'],
         likes=video_data['itemInfo']['itemStruct']['stats']['diggCount'],
-        caption=video_data['itemInfo']['itemStruct']['desc'] or ' '
+        caption=video_data['itemInfo']['itemStruct']['desc'] + '\n\n' or ' ',
+        username1=bot.get_me().username, username2=bot.get_me().username
     )
 
     bot.send_video(

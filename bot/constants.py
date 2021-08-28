@@ -62,9 +62,15 @@ class Message:
 
     not_subscribed = 'Чтобы пользоваться ботом, нужна подписка на канал — {}'
 
-    instagram_post_caption = '<b>Лайки: {}</b>\n\n{}'
+    instagram_post_caption = (
+        '<b>Лайки: {likes}</b>\n\n{caption}'
+        'Рад был помочь! Ваш, <a href="https://t.me/{username1}?start=share">@{username2}</a>'
+    )
 
-    tiktok_video_caption = '<b>Просмотры: {views}\nЛайки: {likes}</b>\n\n{caption}'
+    tiktok_video_caption = (
+        '<b>Просмотры: {views}\nЛайки: {likes}</b>\n\n{caption}'
+        'Рад был помочь! Ваш, <a href="https://t.me/{username1}?start=share">@{username2}</a>'
+    )
 
     invalid_instagram_post = '💬 Не удалось получить пост в Instagram'
 

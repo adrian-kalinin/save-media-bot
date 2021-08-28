@@ -22,10 +22,10 @@ def start_command_callback(update: Update, context: CallbackContext):
     if created:
         logging.info(f'User {update.effective_user.id} started bot ')
 
-    if args := context.args:
-        source, _ = Source.get_or_create(name=args[0])
-        source.users += 1
-        source.save()
+        if args := context.args:
+            source, _ = Source.get_or_create(name=args[0])
+            source.users += 1
+            source.save()
 
     if not user.active:
         user.active = True
