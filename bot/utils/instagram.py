@@ -20,7 +20,7 @@ def get_inst_post_shortcode(url: str):
 
 
 def send_instagram_post(post: Post, bot: Bot, chat_id: int):
-    caption = Message.instagram_post_caption.format(str(post.likes), post.caption)
+    caption = Message.instagram_post_caption.format(str(post.likes), post.caption or ' ')
 
     if post.is_video:
         video = requests.get(post.video_url).content
@@ -58,6 +58,6 @@ def send_instagram_carousel(post: Post, bot: Bot, chat_id: int):
     if post.caption:
         bot.send_message(
             chat_id=chat_id,
-            text=Message.instagram_post_caption.format(str(post.likes), post.caption),
+            text=Message.instagram_post_caption.format(str(post.likes), post.caption or ' '),
             parse_mode=ParseMode.HTML
         )

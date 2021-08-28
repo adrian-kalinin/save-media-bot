@@ -40,7 +40,7 @@ def sending_video(func):
     def wrapper(update: Update, context: CallbackContext):
         context.bot.send_chat_action(
             chat_id=update.effective_chat.id,
-            action=ChatAction.UPLOAD_PHOTO
+            action=ChatAction.UPLOAD_VIDEO
         )
         func(update, context)
     return wrapper

@@ -4,3 +4,4 @@ validators==0.18.2
 instaloader==4.8.1
 requests==2.26.0
 fake_useragent==0.1.11
+TikTokApi==4.0.1
