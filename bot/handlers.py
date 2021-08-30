@@ -55,13 +55,13 @@ not_subscribed_handler = MessageHandler(
 
 instagram_post_handler = MessageHandler(
     filters=Filters.chat_type.private & Filters.text & link & instagram_post & subscribed,
-    callback=instagram_post_callback, run_async=True
+    callback=instagram_post_callback
 
 )
 
 tiktok_video_handler = MessageHandler(
     filters=Filters.chat_type.private & Filters.text & link & tiktok_video & subscribed,
-    callback=tiktok_video_callback, run_async=True
+    callback=tiktok_video_callback
 )
 
 invalid_link_handler = MessageHandler(
