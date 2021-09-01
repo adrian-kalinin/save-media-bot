@@ -40,7 +40,7 @@ class InstagramPostFilter(MessageFilter):
 class TikTokVideoFilter(MessageFilter):
     def filter(self, message: Message):
         short_link_result = re.search(r'https:\/\/vm\.tiktok\.com\/[a-zA-Z0-9-_]+\/.*', message.text)
-        full_link_result = re.search(r'https:\/\/www\.tiktok\.com/@[a-zA-Z0-9-_]+/video/[1-9]+.*', message.text)
+        full_link_result = re.search(r'https:\/\/www\.tiktok\.com\/@[a-zA-Z0-9-_\.]+\/video\/([1-9]+).*', message.text)
         return short_link_result or full_link_result
 
 
