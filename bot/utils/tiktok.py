@@ -8,7 +8,7 @@ from ..constants import Message
 
 
 def get_tiktok_video_id(url: str):
-    first_pattern = r'.*tiktok\.com\/@[a-zA-Z0-9-_]+\/video\/([1-9]+).*'
+    first_pattern = r'.*tiktok\.com\/@[a-zA-Z0-9-_\.]+\/video\/([1-9]+).*'
     second_pattern = r'.*tiktok\.com\/v\/([0-9]+).html.*'
 
     if result := re.search(first_pattern, url):

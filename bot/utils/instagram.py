@@ -15,7 +15,7 @@ instaloader.login(user=INSTAGRAM_USERNAME, passwd=INSTAGRAM_PASSWORD)
 
 
 def get_inst_post_shortcode(url: str):
-    if result := re.search(r'https:\/\/www.instagram.com\/p\/([a-zA-Z0-9-_]+)\/.*', url):
+    if result := re.search(r'https:\/\/www.instagram.com\/p\/([a-zA-Z0-9-_\.]+)\/.*', url):
         return result.group(1)
 
 
@@ -24,7 +24,7 @@ def send_instagram_post(post: Post, bot: Bot, chat_id: int):
         caption += '\n\n'
 
     caption = Message.instagram_post_caption.format(
-        likes=str(post.likes), caption=caption,
+        likes=str(post.likes), caption=caption or ' ',
         username1=bot.get_me().username, username2=bot.get_me().username
     )
 
@@ -65,7 +65,7 @@ def send_instagram_carousel(post: Post, bot: Bot, chat_id: int):
         caption += '\n\n'
 
     text = Message.instagram_post_caption.format(
-        likes=str(post.likes), caption=post.caption + '\n\n' or ' ',
+        likes=str(post.likes), caption=caption or ' ',
         username1=bot.get_me().username, username2=bot.get_me().username
     )
 
