@@ -28,5 +28,6 @@ KEY_PATH = config.get('webhook', 'key_path')
 CERT_PATH = config.get('webhook', 'cert_path')
 
 # instagram section
+USE_SESSION = config.getboolean('instagram', 'use_session')
 INSTAGRAM_USERNAME = config.get('instagram', 'username')
 INSTAGRAM_PASSWORD = config.get('instagram', 'password')

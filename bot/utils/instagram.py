@@ -3,14 +3,16 @@ from instaloader import Instaloader, Post
 import requests
 import re
 
-from settings import INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD
+from settings import USE_SESSION, INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD
 from ..constants import Message, USER_AGENT
 
 
 # set up instaloader
 instaloader = Instaloader(user_agent=USER_AGENT)
 
-instaloader.load_session_from_file(INSTAGRAM_USERNAME, f'sessions/session-{INSTAGRAM_USERNAME}')
+if USE_SESSION:
+    instaloader.load_session_from_file(INSTAGRAM_USERNAME, f'sessions/session-{INSTAGRAM_USERNAME}')
+
 instaloader.login(user=INSTAGRAM_USERNAME, passwd=INSTAGRAM_PASSWORD)
 
 
