@@ -5,6 +5,7 @@ import re
 
 from settings import USE_SESSION, INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD
 from ..constants import Message, USER_AGENT
+from ..utils import separate_thousand
 
 
 # set up instaloader
@@ -26,7 +27,7 @@ def send_instagram_post(post: Post, bot: Bot, chat_id: int):
         caption += '\n\n'
 
     caption = Message.instagram_post_caption.format(
-        likes=str(post.likes), caption=caption or ' ',
+        likes=separate_thousand(post.likes), caption=caption or ' ',
         username1=bot.get_me().username, username2=bot.get_me().username
     )
 
@@ -67,7 +68,7 @@ def send_instagram_carousel(post: Post, bot: Bot, chat_id: int):
         caption += '\n\n'
 
     text = Message.instagram_post_caption.format(
-        likes=str(post.likes), caption=caption or ' ',
+        likes=separate_thousand(post.likes), caption=caption or ' ',
         username1=bot.get_me().username, username2=bot.get_me().username
     )
 

@@ -63,12 +63,12 @@ class Message:
     not_subscribed = 'Чтобы пользоваться ботом, нужна подписка на канал — {}'
 
     instagram_post_caption = (
-        '<b>Лайки: {likes}</b>\n\n{caption}'
+        '<b>Лайки:</b> {likes}\n\n{caption}'
         'Рад был помочь! Ваш, <a href="https://t.me/{username1}?start=share">@{username2}</a>'
     )
 
     tiktok_video_caption = (
-        '<b>Просмотры: {views}\nЛайки: {likes}</b>\n\n{caption}'
+        '<b>Просмотры:</b> {views}\n<b>Лайки:</b> {likes}\n\n{caption}'
         'Рад был помочь! Ваш, <a href="https://t.me/{username1}?start=share">@{username2}</a>'
     )
 

@@ -5,6 +5,7 @@ import requests
 import re
 
 from ..constants import Message
+from ..utils import separate_thousand
 
 
 def get_tiktok_video_id(url: str):
@@ -32,8 +33,8 @@ def send_tiktok_video(tiktok_api: TikTokApi, did: str, video_data: dict, chat_id
         caption += '\n\n'
 
     caption = Message.tiktok_video_caption.format(
-        views=video_data['itemInfo']['itemStruct']['stats']['playCount'],
-        likes=video_data['itemInfo']['itemStruct']['stats']['diggCount'],
+        views=separate_thousand(video_data['itemInfo']['itemStruct']['stats']['playCount']),
+        likes=separate_thousand(video_data['itemInfo']['itemStruct']['stats']['diggCount']),
         caption=caption, username1=bot.get_me().username, username2=bot.get_me().username
     )
 

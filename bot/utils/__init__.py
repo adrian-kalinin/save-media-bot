@@ -1,9 +1,13 @@
 from telegram import Update, ChatAction
 from telegram.ext import CallbackContext
 from functools import wraps
+import locale
 import logging
 
 from ..models import User
+
+
+locale.setlocale(locale.LC_ALL, 'en_US')
 
 
 def log_request(user_id):
@@ -11,6 +15,11 @@ def log_request(user_id):
     query.execute()
 
     logging.info(f'User {user_id} made a request')
+
+
+def separate_thousand(number):
+    local_number = locale.format_string('%d', number, grouping=True)
+    return local_number.replace(',', ' ')
 
 
 def typing(func):
