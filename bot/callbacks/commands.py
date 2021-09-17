@@ -1,5 +1,6 @@
-from telegram import Update, ParseMode, ReplyKeyboardRemove
+from telegram import Update, ParseMode
 from telegram.ext import CallbackContext
+from peewee import DoesNotExist
 import logging
 
 from ..models import User, Source
@@ -17,19 +18,22 @@ def admin_command_callback(update: Update, context: CallbackContext):
 
 @typing
 def start_command_callback(update: Update, context: CallbackContext):
-    user, created = User.get_or_create(user_id=update.effective_user.id)
+    try:
+        user = User.get(user_id=update.effective_user.id)
 
-    if created:
-        logging.info(f'User {update.effective_user.id} started bot ')
+        if not user.active:
+            user.active = True
+            user.save()
+
+    except DoesNotExist:
+        User.create(user_id=update.effective_user.id)
 
         if args := context.args:
             source, _ = Source.get_or_create(name=args[0])
             source.users += 1
             source.save()
 
-    if not user.active:
-        user.active = True
-        user.save()
+        logging.info(f'User {update.effective_user.id} started bot ')
 
     context.bot.send_message(
         chat_id=update.effective_chat.id,
