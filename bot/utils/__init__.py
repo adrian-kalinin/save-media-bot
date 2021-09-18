@@ -7,7 +7,7 @@ import logging
 from ..models import User
 
 
-locale.setlocale(locale.LC_ALL, 'en_US')
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 
 def log_request(user_id):
