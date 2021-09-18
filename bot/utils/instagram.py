@@ -23,6 +23,12 @@ def get_inst_post_shortcode(url: str):
 
 
 def send_instagram_post(post: Post, bot: Bot, chat_id: int):
+    if post.is_video:
+        bot.send_video(chat_id=chat_id, video=requests.get(post.video_url).content)
+
+    else:
+        bot.send_photo(chat_id=chat_id, photo=requests.get(post.url).content)
+
     if caption := post.caption:
         caption += '\n\n'
 
@@ -31,21 +37,11 @@ def send_instagram_post(post: Post, bot: Bot, chat_id: int):
         username1=bot.get_me().username, username2=bot.get_me().username
     )
 
-    if post.is_video:
-        video = requests.get(post.video_url).content
-
-        bot.send_video(
-            chat_id=chat_id, video=video,
-            caption=caption, parse_mode=ParseMode.HTML
-        )
-
-    else:
-        photo = requests.get(post.url).content
-
-        bot.send_photo(
-            chat_id=chat_id, photo=photo,
-            caption=caption, parse_mode=ParseMode.HTML
-        )
+    bot.send_message(
+        chat_id=chat_id, text=caption,
+        parse_mode=ParseMode.HTML,
+        disable_web_page_preview=True
+    )
 
 
 def send_instagram_carousel(post: Post, bot: Bot, chat_id: int):
