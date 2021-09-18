@@ -22,6 +22,13 @@ def separate_thousand(number):
     return local_number.replace(',', ' ')
 
 
+def escape_special_characters(text):
+    text = text.replace('&', '&amp;')
+    text = text.replace('<', '&lt;')
+    text = text.replace('>', '&gt;')
+    return text
+
+
 def typing(func):
     @wraps(func)
     def wrapper(update: Update, context: CallbackContext):
